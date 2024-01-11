@@ -29,7 +29,7 @@ vim.keymap.set('n', "<leader>t", "<C-w>w")
 vim.keymap.set("n", "<leader>x", "<cmd>Ex<CR>")
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>")
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>")
-vim.keymap.set("n", "<C-a>", "<C-^>")
+vim.keymap.set("n", "<BS>", "<C-^>")
 
 vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

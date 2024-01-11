@@ -1,0 +1,71 @@
+#!/bin/bash
+
+template="main"
+name="new_project"
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+RED='\033[0;31m'
+GREEN='\033[0;33m'
+BLUE='\033[1;36m'
+NC='\033[0m'
+
+has_argument() {
+    [[ ("$1" == *=* && -n ${1#*=}) || ( ! -z "$2" && "$2" != -*)  ]];
+}
+
+extract_argument() {
+  echo "${2:-${1#*=}}"
+}
+
+handle_options(){
+    while [ $# -gt 0 ]; do
+        case $1 in
+            -t | --template)
+                if ! has_argument $@; then
+                    echo "Template not specified" >&2
+                    exit 1
+                fi
+
+                template=$(extract_argument $@)
+                shift
+                ;;
+            *)
+                echo "Invalid Argument"
+                exit 1
+                ;;
+        esac
+        shift
+    done   
+}
+
+if [[ $# -eq 0 ]] ; then
+    echo "Project Name is Required"
+    exit 1
+fi
+
+
+name=$1
+shift
+handle_options "$@"
+
+echo -e "Creating new project ${BLUE}${bold}$name${normal}${NC}"
+
+branchExists=$(git ls-remote --heads git@github.com:bansalarnav/starter.git refs/heads/$template | wc -l)
+
+if [[ branchExists -eq 0 ]]; then
+    echo -e "${RED}${bold}Error:${normal} Template not found${NC}"
+    exit 1
+fi
+
+git clone git@github.com:bansalarnav/starter.git $name
+cd $name
+git checkout $template > /dev/null
+rm -rf .git
+find ./ -type f -exec sed -i "s/@repo/@$name/g" {} \;
+find ./ -type f -exec sed -i "s/repo/$name/g" {} \;
+git init
+git add . > /dev/null
+git commit -m "Initial Commit" > /dev/null
+
+echo -e "${GREEN}${bold}Created $name Successfully!${normal}${NC}"

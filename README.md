@@ -1,6 +1,6 @@
  
 ```
-stow */ --target=/home
+stow */ --target=$HOME
 ```
 
 ### zsh conf

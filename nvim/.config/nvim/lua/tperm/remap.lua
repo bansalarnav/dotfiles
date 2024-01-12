@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 -- Copilot
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessions<CR>")
 
 -- Saving
 vim.keymap.set("n", "<leader>s", function()

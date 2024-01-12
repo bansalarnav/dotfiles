@@ -1,5 +1,6 @@
   
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin
 
 # android
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -66,7 +67,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -120,8 +121,12 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias tmux="TERM=screen-256color-bce tmux"
+
+# aliases
+alias v="nvim"
+alias src="source ~/.zshrc"
 # alias zshconf="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# keybinds
+bindkey -s ^f "tmux-sessions\n"

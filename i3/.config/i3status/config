@@ -1,0 +1,51 @@
+# i3status config
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "battery all"
+order += "memory"
+order += "load"
+order += "tztime local"
+order += "volume master"
+
+volume master {
+        format = " ♪ %volume "
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid, %bitrate) %ip"
+        format_down = "W: down"
+}
+
+battery all {
+        format = "%status %percentage %remaining "
+}
+
+tztime local {
+        format = " %d/%m/%Y %H:%M "
+}
+
+load {
+        format = " CPU: %1min "
+}
+
+memory {
+        format = " MEMORY: %used / %total "
+        threshold_degraded = "10%"
+        format_degraded = "LOW MEMORY: %free"
+}
+
+disk "/" {
+        format = "%free"
+}
+
+read_file uptime {
+        path = "/proc/uptime"
+}

@@ -17,6 +17,9 @@ export PATH="$PNPM_HOME:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
+# Go
+export PATH=$PATH:/usr/local/go/bin
+
 # terminal colors for tmux
 # export TERM="xterm-256color"
 
@@ -130,3 +133,6 @@ alias src="source ~/.zshrc"
 
 # keybinds
 bindkey -s ^f "tmux-sessions\n"
+
+# bun completions
+[ -s "/home/arnav/.bun/_bun" ] && source "/home/arnav/.bun/_bun"

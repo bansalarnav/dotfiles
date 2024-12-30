@@ -9,6 +9,10 @@ null_ls.setup({
     if client.supports_method("textDocument/formatting") then
       vim.keymap.set("n", "<leader>lf", function()
         vim.lsp.buf.format({
+          filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+          end,
           bufnr = vim.api.nvim_get_current_buf(),
           timeout = 10000,
           async = true,
@@ -17,6 +21,24 @@ null_ls.setup({
 
       vim.keymap.set("n", "<leader>s", function()
         vim.lsp.buf.format({
+          filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+          end,
+          bufnr = vim.api.nvim_get_current_buf(),
+          timeout = 10000,
+          async = true,
+        })
+        vim.cmd("w")
+      end, { buffer = bufnr, desc = "[lsp] format" })
+
+
+      vim.keymap.set("n", "<leader>f", function()
+        vim.lsp.buf.format({
+          filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+          end,
           bufnr = vim.api.nvim_get_current_buf(),
           timeout = 10000,
           async = true,

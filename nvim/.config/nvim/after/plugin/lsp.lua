@@ -21,21 +21,25 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'rust_analyzer' },
+  ensure_installed = { 'tsserver', 'rust_analyzer', 'bashls', 'jsonls', 'prismals', 'pyright', 'tailwindcss' },
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
     end,
-    --        tsserver = function()
-    --            require("lspconfig").tsserver.setup({
-    --                capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    --                on_attach = function(client)
-    --                    client.resolved_capabilities.documentFormattingProvider = false
-    --               end
-    --            })
-    --        end
+    tailwindcss = function()
+      require('lspconfig').tailwindcss.setup({
+        root_dir = require('lspconfig').util.root_pattern("tailwind.config.js", "tailwind.config.ts", "postcss.config.js",
+          "postcss.config.ts")
+      })
+    end
+    -- tsserver = function()
+    --   require("lspconfig").tsserver.setup({
+    --     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    --     root_pattern(".git")
+    --   })
+    -- end
   },
 })
 

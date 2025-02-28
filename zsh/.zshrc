@@ -9,6 +9,9 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# java
+export JAVA_HOME=$HOME/.jdks/corretto-17.0.14
+
 # pnpm
 export PNPM_HOME="/home/arnav/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -19,6 +22,10 @@ export PATH=$BUN_INSTALL/bin:$PATH
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
+
+# Neovim
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
 
 # terminal colors for tmux
 # export TERM="xterm-256color"

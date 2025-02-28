@@ -15,17 +15,6 @@ end)
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 
-vim.keymap.set("n", "<S-t>b", function()
-  vim.cmd("ToggleTerm direction=horizontal size=10")
-end)
-
-vim.keymap.set("n", "<S-t>r", function()
-  vim.cmd("ToggleTerm direction=vertical size=55")
-end)
-
-vim.keymap.set("n", "<S-t>", function()
-  vim.cmd("ToggleTerm")
-end)
 
 vim.keymap.set('n', "<leader>t", "<C-w>w")
 
@@ -68,13 +57,12 @@ end)
 
 vim.keymap.set('t', '<leader>t', '<C-\\><C-N><C-w>w')
 vim.keymap.set('t', '<leader>q', '<C-\\><C-N><cmd>q<CR>')
-vim.keymap.set('t', '<S-t>', '<C-\\><C-N><cmd>ToggleTerm<CR>')
 
 vim.keymap.set("n", "<C-g>", ":G ")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,

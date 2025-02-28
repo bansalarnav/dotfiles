@@ -239,14 +239,14 @@ bar {
 }
 
 # startup apps
-exec --no-startup-id i3-msg 'exec firefox;'
+exec --no-startup-id i3-msg 'exec zen;'
 exec --no-startup-id i3-msg 'exec google-chrome --profile-directory=Default --password-store=gnome;'
 # exec --no-startup-id i3-msg 'exec spotify;'
 exec --no-startup-id i3-msg 'workspace 3; exec i3-sensible-terminal;'
 
 assign [class="Firefox"] $ws1
 assign [class="Google-chrome"] $ws2
-assign [class="Spotify"] $ws4
+assign [class="Spotify"] $ws9
 
 
 # suspend

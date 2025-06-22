@@ -135,6 +135,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias v="nvim"
 alias src="source ~/.zshrc"
+alias python="python3"
 # alias zshconf="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
@@ -143,3 +144,6 @@ bindkey -s ^f "tmux-sessions\n"
 
 # bun completions
 [ -s "/home/arnav/.bun/_bun" ] && source "/home/arnav/.bun/_bun"
+
+# opencode
+export PATH=/home/arnav/.opencode/bin:$PATH

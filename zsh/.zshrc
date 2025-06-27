@@ -1,41 +1,12 @@
   
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:$HOME/.local/bin
-
-# android
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# java
-export JAVA_HOME=$HOME/.jdks/corretto-17.0.14
-
-# pnpm
-export PNPM_HOME="/home/arnav/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH=$HOME/.local/bin:$PATH
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
 # Go
-export PATH=$PATH:/usr/local/go/bin
-
-# Neovim
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
-
-# terminal colors for tmux
-# export TERM="xterm-256color"
-
-# setup nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
+export PATH=/usr/local/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -77,7 +48,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -106,6 +77,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
@@ -135,15 +107,11 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias v="nvim"
 alias src="source ~/.zshrc"
-alias python="python3"
-# alias zshconf="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # keybinds
-bindkey -s ^f "tmux-sessions\n"
+#bindkey -s ^f "tmux-sessions\n"
+#
 
-# bun completions
-[ -s "/home/arnav/.bun/_bun" ] && source "/home/arnav/.bun/_bun"
+bindkey -s ^f "tmux-sessionizer\n"
 
-# opencode
-export PATH=/home/arnav/.opencode/bin:$PATH
+

@@ -7,7 +7,9 @@ vim.keymap.set("n", "<C-f>", "<cmd> silent !tmux neww tmux-sessionizer<CR>")
 
 -- Save
 vim.keymap.set("n", "<leader>s", function()
-  vim.lsp.buf.format({ async = true })
+  require("conform").format({
+    lsp_format = 'fallback'
+  })
   vim.cmd("w")
 end)
 

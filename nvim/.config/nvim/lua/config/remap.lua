@@ -21,7 +21,13 @@ vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>")
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<BS>", "<C-^>")
 
-vim.keymap.set("n", "<leader>q", ":qa!")
+vim.keymap.set("n", "<leader>q", function()
+  vim.cmd("wa!")
+  require("conform").format({
+    lsp_format = 'fallback'
+  })
+  vim.cmd("qa")
+end)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

@@ -46,7 +46,9 @@ return {
         "rust_analyzer",
         "lua_ls",
         "gopls",
-        "tailwindcss"
+        "tailwindcss",
+        "biome",
+        "eslint"
       },
       handlers = {
         function(server_name)

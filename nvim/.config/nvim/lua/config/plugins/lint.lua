@@ -1,0 +1,88 @@
+return {
+  "mfussenegger/nvim-lint",
+  enabled = false
+}
+
+-- return {
+--   "mfussenegger/nvim-lint",
+--   config = function()
+--     local lint = require("lint")
+--
+--     local linter_root_markers = {
+--       biomejs = { "biome.json", "biome.jsonc" },
+--       eslint_d = {
+--         "eslint.config.js",
+--         "eslint.config.mjs",
+--         "eslint.config.cjs",
+--         "eslint.config.ts",
+--         "eslint.config.mts",
+--         "eslint.config.cts",
+--         ".eslintrc.js",
+--         ".eslintrc.cjs",
+--         ".eslintrc.yaml",
+--         ".eslintrc.yml",
+--         ".eslintrc.json",
+--       },
+--     }
+--
+--     -- choose_linter({
+--     --   'typescript',
+--     --   'typescriptreact',
+--     --   'javascript',
+--     --   'javascriptreact',
+--     -- }, linter_root_markers)
+--
+--
+--     -- local linters_by_ft = {
+--     --   javascript = js_linters,
+--     --   javascriptreact = js_linters,
+--     --   typescript = js_linters,
+--     --   typescriptreact = js_linters,
+--     -- }
+--
+--     if require("lspconfig.util").root_pattern("biome.json", "biome.jsonc")(vim.fn.expand("%")) then
+--       lint.linters_by_ft = {
+--         typescript = { "biomejs" },
+--       }
+--     else
+--       lint.linters_by_ft = {
+--         javascript = { "eslint_d" },
+--         javascriptreact = { "eslint_d" },
+--         typescript = { "eslint_d" },
+--         typescriptreact = { "eslint_d" },
+--       }
+--     end
+--
+--     local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+--     local lint_augroup = vim.api.nvim_create_augroup("LintOnSave", { clear = true })
+--
+--     vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+--       group = lint_augroup,
+--       callback = function(args)
+--         -- local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+--         -- local names_override = nil
+--
+--         -- if vim.tbl_contains(js_filetypes, filetype) then
+--         --   if require("lspconfig.util").root_pattern("biome.json", "biome.jsonc")(args.buf) then
+--         --     names_override = { "biomejs" }
+--         --   end
+--         -- end
+--         --
+--         -- lint.try_lint(names_override)
+--
+--         lint.try_lint()
+--       end,
+--     })
+--
+--     vim.api.nvim_create_user_command("LintInfo", function()
+--       local filetype = vim.bo.filetype
+--       local linters = require("lint").linters_by_ft[filetype]
+--
+--       if linters then
+--         print("Linters for " .. filetype .. ": " .. table.concat(linters, ", "))
+--       else
+--         print("No linters configured for filetype: " .. filetype)
+--       end
+--     end, {})
+--   end
+-- }

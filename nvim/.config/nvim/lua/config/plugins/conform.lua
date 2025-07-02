@@ -6,7 +6,9 @@ return {
         lua = { "stylua" },
         go = { "gofmt" },
         javascript = { "biome", "biome-organize-imports", "prettier" },
+        javascriptreact = { "biome", "biome-organize-imports", "prettier" },
         typescript = { "biome", "biome-organize-imports", "prettier" },
+        typescriptreact = { "biome", "biome-organize-imports", "prettier" },
       },
       -- format_on_save = {
       --   timeout_ms = 500,

@@ -40,14 +40,14 @@ return {
 
 
     require("mason").setup {}
-    require("mason-lspconfig").setup({
+    local mason_lspconfig = require("mason-lspconfig")
+    mason_lspconfig.setup({
       ensure_installed = {
-        'ts_ls',
+        'vtsls',
         "rust_analyzer",
         "lua_ls",
         "gopls",
         "tailwindcss",
-        "biome",
         "eslint"
       },
       handlers = {
@@ -57,10 +57,22 @@ return {
           }
         end,
         ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
-        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border("FloatBorder") }),
+        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help,
+          { border = border("FloatBorder") }),
       }
     })
 
+    -- Enable separately to use installed biome version
+    vim.lsp.enable("biome")
+    vim.lsp.config("biome", {
+      cmd = { "bun", "biome", "lsp-proxy" },
+    })
+
+    vim.lsp.config('*', {
+      capabilities = capabilities,
+    })
+
+    vim.lsp.inlay_hint.enable(true)
 
     vim.lsp.config("lua_ls", {
       settings = {
@@ -78,6 +90,32 @@ return {
             }
           }
 
+        }
+      }
+    })
+
+    vim.lsp.config("vtsls", {
+      root_markers = {
+        ".git",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "yarn.lock",
+        "package-lock.json",
+        "bun.lockb"
+      },
+      settings = {
+        typescript = {
+          tsserver = {
+            maxTsServerMemory = 8184,
+          },
+          inlayHints = {
+            parameterNames = { enabled = "literals" },
+            -- parameterTypes = { enabled = true },
+            -- variableTypes = { enabled = true },
+            -- propertyDeclarationTypes = { enabled = true },
+            -- functionLikeReturnTypes = { enabled = true },
+            -- enumMemberValues = { enabled = true },
+          }
         }
       }
     })
@@ -140,6 +178,34 @@ return {
         header = "",
         prefix = ""
       }
+    })
+
+
+    local autocmd = vim.api.nvim_create_autocmd
+    local augroup = vim.api.nvim_create_augroup
+    local LspGroup = augroup('LspGroup', {})
+
+    autocmd('LspAttach', {
+      group = LspGroup,
+      callback = function(e)
+        local opts = { buffer = e.buf }
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition({ border = "rounded" }) end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+
+        vim.keymap.set("n", "<leader>f", function()
+          require("conform").format({
+            lsp_format = 'fallback'
+          })
+        end)
+      end
     })
   end,
 }

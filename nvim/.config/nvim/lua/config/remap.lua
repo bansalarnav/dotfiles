@@ -46,12 +46,16 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
--- Quick Fix Lists
+-- Location  Lists
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("v", "<leader>r", [[:s///gI<Left><Left><Left><Left>]])
+
+-- Splits
+vim.keymap.set("n", "<leader>vv", "<cmd>vsplit<CR>")
+vim.keymap.set("n", "<leader>vx", "<cmd>only<CR>")
 
 -- Reload Config
 vim.keymap.set("n", "<leader><leader>", function()

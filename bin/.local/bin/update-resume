@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Script to update resume in portfolio and push to GitHub
+# Usage: ./update-resume.sh <path-to-pdf>
+
+set -e  # Exit on error
+
+# Check if file path argument is provided
+if [ -z "$1" ]; then
+    echo "Error: No file path provided"
+    echo "Usage: $0 <path-to-pdf>"
+    exit 1
+fi
+
+PDF_PATH="$1"
+
+# Check if the provided file exists
+if [ ! -f "$PDF_PATH" ]; then
+    echo "Error: File '$PDF_PATH' does not exist"
+    exit 1
+fi
+
+# Check if it's a PDF file
+if [[ ! "$PDF_PATH" =~ \.pdf$ ]]; then
+    echo "Warning: File does not have .pdf extension"
+fi
+
+DEST_DIR="/Users/arnav/code/portfolio/public"
+DEST_FILE="$DEST_DIR/resume.pdf"
+
+# Check if destination directory exists
+if [ ! -d "$DEST_DIR" ]; then
+    echo "Error: Destination directory '$DEST_DIR' does not exist"
+    exit 1
+fi
+
+# Copy the file
+echo "Copying $PDF_PATH to $DEST_FILE..."
+cp "$PDF_PATH" "$DEST_FILE"
+
+# Navigate to portfolio directory
+cd /Users/arnav/code/portfolio
+
+# Git operations
+echo "Committing changes..."
+git add public/resume.pdf
+git commit -m "update resume"
+
+echo "Pushing to GitHub..."
+git push
+
+echo "Resume updated successfully!"

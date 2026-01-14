@@ -120,6 +120,16 @@ return {
       }
     })
 
+    local home = os.getenv("HOME")
+    vim.lsp.config("clangd", {
+      cmd = {
+        "clangd",
+        "--background-index",
+        -- For PlatformIO Projects
+        "--query-driver=" .. home .. "/.platformio/packages/toolchain-xtensa*/bin/*g++*"
+      }
+    })
+
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
 

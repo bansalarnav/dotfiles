@@ -9,6 +9,7 @@ return {
         javascriptreact = { "biome", "biome-organize-imports", "prettier" },
         typescript = { "biome", "biome-organize-imports", "prettier" },
         typescriptreact = { "biome", "biome-organize-imports", "prettier" },
+        svelte = { "biome", "biome-organize-imports", "prettier" },
       },
       -- format_on_save = {
       --   timeout_ms = 500,

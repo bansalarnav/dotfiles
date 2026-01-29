@@ -38,6 +38,8 @@ return {
       cmp_lsp.default_capabilities()
     )
 
+    -- Clangd setup because it's weird
+    require("lspconfig").clangd.setup({})
 
     require("mason").setup {}
     local mason_lspconfig = require("mason-lspconfig")
